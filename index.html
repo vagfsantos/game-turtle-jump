@@ -1,0 +1,83 @@
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<script src="js/p5.min.js"></script>
+		<script src="js/sprite.js"></script>
+		<script src="js/eventos.js"></script>
+		<script src="js/tartarruga.js"></script>
+		<style>
+			body{
+				margin:0;
+				border:0;
+				padding:0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+		// variaveis globais
+		var ruaAltura,
+			ruaY;
+
+		var img_tartarruga,
+			sprite_tartarruga,
+			personagem_tartarruga;
+
+		var evento;
+
+
+		// retorna a porcentagem de um total esperado
+		function porcentagemDe(total, porcentagem){
+			return (total * porcentagem) / 100;
+		}
+
+		// pre carregando arquivos
+		function preload(){
+			img_tartarruga = loadImage("img/tartarruga.png");
+			sprite_tartarruga = new Sprite(img_tartarruga, 4, 4);
+			personagem_tartarruga = new Tartarruga(sprite_tartarruga);
+
+			evento = new Evento();
+		}
+
+		// configuracoes iniciais
+		function setup(){
+			createCanvas(displayWidth, displayHeight);
+			frameRate(30);
+			ruaAltura = porcentagemDe(windowHeight, 40);
+			ruaY = windowHeight - ruaAltura;
+
+			// altura
+			personagem_tartarruga.y = ruaAltura;
+			personagem_tartarruga.posicaoChao = ruaAltura;
+			personagem_tartarruga.tamanhoDoSalto = ruaAltura - 70;
+		}
+		
+		function draw(){
+			background(142, 211, 227);
+			
+			// Desenhando cenario
+			fill(106, 84, 30); // marrom
+			rect(0, windowHeight - ruaAltura, windowWidth, ruaAltura);
+
+			// Setando imagens
+			sprite_tartarruga.proximoFrame();
+			personagem_tartarruga.atualizar();
+			personagem_tartarruga.desenhar();
+		}
+
+
+		// toque na tela, Direita -> PULA, Esquerda -> ABAIXA
+		function touchStarted(){
+			var metadeDaTela = windowWidth / 2;
+			if(touchX > metadeDaTela){
+				evento.toqueDireita = true;
+			} else{
+				evento.toqueEsquerda = true;
+				}
+		}
+
+		</script>
+	</body>
+</html>
