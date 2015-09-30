@@ -1,4 +1,5 @@
-function Obstaculo(){
+function Obstaculo(sprite){
+	this.sprite = sprite;
 	this.x = 0;
 	this.y = 0;
 	this.velocidadeX = 5;
@@ -8,11 +9,11 @@ function Obstaculo(){
 
 Obstaculo.prototype = {
 	atualizar: function(){
-		this.x = this.x - this.velocidadeX; 
+		sprite_fogo.proximoFrame();
+		this.x -= this.velocidadeX;
 	},
 
 	desenhar: function(){
-		fill(0);
-		rect(this.x, this.y, this.largura, this.altura);
+		this.sprite.desenhar(this.x, this.y);
 	}
 }

@@ -1,8 +1,9 @@
 <html>
 	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<meta name="viewport" content="width=device-width"/>
 	<meta charset="utf-8"/>
 		<script src="js/p5.min.js"></script>
+		<script src="js/elementos.js"></script>
 		<script src="js/fundo.js"></script>
 		<script src="js/sprite.js"></script>
 		<script src="js/obstaculo.js"></script>
@@ -32,13 +33,30 @@
 			ruaAltura,
 			ruaY;
 
-		var obstaculo;
-
 		var img_tartarruga,
 			sprite_tartarruga,
 			personagem_tartarruga;
 
 		var evento;
+
+		var img_fogo,
+			sprite_fogo;
+
+		var elementos;
+
+		function criaObstaculo(){
+			sprite_fogo = new Sprite(img_fogo, 1, 2);
+
+			sprite_fogo.largura = 15;
+			sprite_fogo.altura = 20;
+			sprite_fogo.linha = 0;
+			sprite_fogo.intervalo = 40;
+
+			var obstaculo = new Obstaculo(sprite_fogo);
+			obstaculo.x = width;
+			obstaculo.y = ruaY - 20;
+			elemento.novoElemento(obstaculo);
+		}
 
 
 		// pre carregando arquivos
@@ -46,17 +64,17 @@
 			img_tartarruga = loadImage("img/tartarruga.png");
 			sprite_tartarruga = new Sprite(img_tartarruga, 4, 4);
 			personagem_tartarruga = new Tartarruga(sprite_tartarruga);
+
+			img_fogo = loadImage("img/fogo.png");
+
 			evento = new Evento();
-
 			fundo_fixo = new Fundo();
-		}
 
-		function novoObstaculo(){
-			var obstaculo = new Obstaculo();
-			obstaculo.y = ruaY - 20;
-			obstaculo.x = width;
-			return obstaculo;
+			elemento = new ElementoNaTela();
+			elemento.novoElemento(fundo_fixo);
+			elemento.novoElemento(personagem_tartarruga);
 		}
+		var i = true;
 
 		// configuracoes iniciais
 		function setup(){
@@ -69,22 +87,14 @@
 			personagem_tartarruga.posicaoChao = ruaY - 55;
 			personagem_tartarruga.y = ruaY - 55;
 			personagem_tartarruga.tamanhoDoSalto = ruaY - 200;
-
-			obstaculo = new Obstaculo();
-			obstaculo.y = ruaY - 20;
-			obstaculo.x = width;
 		}
 
-		function draw(){
-			fundo_fixo.desenhar();
 
-			// animacao - atualizando e desenhando na tela
-			sprite_tartarruga.proximoFrame();
-			personagem_tartarruga.atualizar();
-			personagem_tartarruga.desenhar();
-			
-			obstaculo.atualizar();
-			obstaculo.desenhar();
+		function draw(){
+			elemento.atualizar();
+			elemento.desenhar();
+
+			if(i){criaObstaculo(); i = false}
 		}
 
 

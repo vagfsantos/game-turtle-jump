@@ -56,6 +56,8 @@ Tartarruga.prototype = {
 			this.abaixa();
 		}
 
+		sprite_tartarruga.proximoFrame();
+
 	},
 
 	desenhar: function(){

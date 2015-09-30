@@ -11,6 +11,7 @@ function Sprite(imagem, linhas, colunas){
 	// intervalo de trasicao dos frames em MS
 	this.intervalo = 80;
 	this.ultimoTempo = null;
+
 	// imagem atual da sprite
 	this.coluna = 0;
 	this.linha = 1;
