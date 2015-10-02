@@ -4,7 +4,7 @@ function Tartarruga(sprite){
 	this.y = 0;
 	this.posicaoChao = 0;
 
-	this.aceleracaoY = 4;
+	this.aceleracaoY = 2;
 	this.velocidadeY = -20;
 
 	this.tamanhoDoSalto = 0;
@@ -20,14 +20,10 @@ Tartarruga.prototype = {
 		this.y += this.velocidadeY;
 		this.velocidadeY += this.aceleracaoY;
 
-		if(this.y <= this.tamanhoDoSalto || this.y >= this.posicaoChao){
-			this.velocidadeY *= -1;
-
-			if(this.y >= this.posicaoChao){
-				this.velocidadeY = -20;
-				evento.pular = false;
-				sprite_tartarruga.linha = 1;
-			}
+		if(this.y >= this.posicaoChao){
+			this.velocidadeY = -20;
+			evento.pular = false;
+			sprite_tartarruga.linha = 1;
 		}
 	},
 

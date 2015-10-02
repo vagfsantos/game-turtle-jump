@@ -9,7 +9,7 @@ function Obstaculo(sprite){
 
 Obstaculo.prototype = {
 	atualizar: function(){
-		sprite_fogo.proximoFrame();
+		sprite_bomba.proximoFrame();
 		this.x -= this.velocidadeX;
 	},
 

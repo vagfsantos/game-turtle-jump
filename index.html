@@ -39,22 +39,22 @@
 
 		var evento;
 
-		var img_fogo,
-			sprite_fogo;
+		var img_bomba,
+			sprite_bomba;
 
 		var elementos;
 
 		function criaObstaculo(){
-			sprite_fogo = new Sprite(img_fogo, 1, 2);
+			sprite_bomba = new Sprite(img_bomba, 1, 6);
 
-			sprite_fogo.largura = 15;
-			sprite_fogo.altura = 20;
-			sprite_fogo.linha = 0;
-			sprite_fogo.intervalo = 40;
+			sprite_bomba.largura = 40;
+			sprite_bomba.altura = 40;
+			sprite_bomba.linha = 0;
+			sprite_bomba.intervalo = 40;
 
-			var obstaculo = new Obstaculo(sprite_fogo);
+			var obstaculo = new Obstaculo(sprite_bomba);
 			obstaculo.x = width;
-			obstaculo.y = ruaY - 20;
+			obstaculo.y = ruaY - 40;
 			elemento.novoElemento(obstaculo);
 		}
 
@@ -65,7 +65,7 @@
 			sprite_tartarruga = new Sprite(img_tartarruga, 4, 4);
 			personagem_tartarruga = new Tartarruga(sprite_tartarruga);
 
-			img_fogo = loadImage("img/fogo.png");
+			img_bomba = loadImage("img/sprite-bomba.png");
 
 			evento = new Evento();
 			fundo_fixo = new Fundo();
@@ -74,27 +74,26 @@
 			elemento.novoElemento(fundo_fixo);
 			elemento.novoElemento(personagem_tartarruga);
 		}
-		var i = true;
 
 		// configuracoes iniciais
 		function setup(){
 			createCanvas(600, 350);
 			frameRate(30);
-			ruaAltura = height * 40 / 100;
+			ruaAltura = height * 20 / 100;
 			ruaY = height - ruaAltura;
 
 			// altura
 			personagem_tartarruga.posicaoChao = ruaY - 55;
 			personagem_tartarruga.y = ruaY - 55;
-			personagem_tartarruga.tamanhoDoSalto = ruaY - 200;
+			personagem_tartarruga.tamanhoDoSalto = ruaY - 400;
+
+			noLoop();
 		}
 
 
 		function draw(){
 			elemento.atualizar();
 			elemento.desenhar();
-
-			if(i){criaObstaculo(); i = false}
 		}
 
 
