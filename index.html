@@ -2,112 +2,22 @@
 	<head>
 	<meta name="viewport" content="width=device-width"/>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="js/p5.min.js"></script>
+		<script src="js/colisor.js"></script>
 		<script src="js/elementos.js"></script>
 		<script src="js/fundo.js"></script>
 		<script src="js/sprite.js"></script>
 		<script src="js/obstaculo.js"></script>
 		<script src="js/eventos.js"></script>
 		<script src="js/tartarruga.js"></script>
-		<style>
-			body{
-				margin:0;
-				border:0;
-				padding:0;
-				overflow: hidden;
-				background:#000;
-			}
-			canvas{
-				position: absolute;
-				left: 0; right: 0;
-				top:0; bottom: 0;
-				margin: auto;
-			}
-
-		</style>
 	</head>
 	<body>
-		<script>
-		// variaveis globais
-		var fundo_fixo,
-			ruaAltura,
-			ruaY;
 
-		var img_tartarruga,
-			sprite_tartarruga,
-			personagem_tartarruga;
+		<div id="inicio" class="ativo">
+			<button id="jogar">Jogar</button>
+		</div>
 
-		var evento;
-
-		var img_bomba,
-			sprite_bomba;
-
-		var elementos;
-
-		function criaObstaculo(){
-			sprite_bomba = new Sprite(img_bomba, 1, 6);
-
-			sprite_bomba.largura = 40;
-			sprite_bomba.altura = 40;
-			sprite_bomba.linha = 0;
-			sprite_bomba.intervalo = 40;
-
-			var obstaculo = new Obstaculo(sprite_bomba);
-			obstaculo.x = width;
-			obstaculo.y = ruaY - 40;
-			elemento.novoElemento(obstaculo);
-		}
-
-
-		// pre carregando arquivos
-		function preload(){
-			img_tartarruga = loadImage("img/tartarruga.png");
-			sprite_tartarruga = new Sprite(img_tartarruga, 4, 4);
-			personagem_tartarruga = new Tartarruga(sprite_tartarruga);
-
-			img_bomba = loadImage("img/sprite-bomba.png");
-
-			evento = new Evento();
-			fundo_fixo = new Fundo();
-
-			elemento = new ElementoNaTela();
-			elemento.novoElemento(fundo_fixo);
-			elemento.novoElemento(personagem_tartarruga);
-		}
-
-		// configuracoes iniciais
-		function setup(){
-			createCanvas(600, 350);
-			frameRate(30);
-			ruaAltura = height * 20 / 100;
-			ruaY = height - ruaAltura;
-
-			// altura
-			personagem_tartarruga.posicaoChao = ruaY - 55;
-			personagem_tartarruga.y = ruaY - 55;
-			personagem_tartarruga.tamanhoDoSalto = ruaY - 400;
-
-			noLoop();
-		}
-
-
-		function draw(){
-			elemento.atualizar();
-			elemento.desenhar();
-		}
-
-
-		// toque na tela, Direita -> PULA, Esquerda -> ABAIXA
-		function keyPressed(){
-			if(keyCode === UP_ARROW || keyCode === 87){
-				evento.pular = true;
-			}
-
-			if(keyCode === DOWN_ARROW || keyCode === 83){
-				evento.abaixar = true;
-			}
-		}
-
-		</script>
+		<script src="js/principal.js"></script>
 	</body>
 </html>

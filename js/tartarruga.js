@@ -7,8 +7,6 @@ function Tartarruga(sprite){
 	this.aceleracaoY = 2;
 	this.velocidadeY = -20;
 
-	this.tamanhoDoSalto = 0;
-
 	this.ultimoTempoAbaixado = null;
 	this.tempoAbaixado = 500;
 }
@@ -42,6 +40,17 @@ Tartarruga.prototype = {
 		}	
 	},
 
+	areaDeColisao:function(){
+		var retangulos = {
+			'x': this.x + 20,
+			'y': this.y,
+			'largura': 20,
+			'altura': 40
+		}
+		rect(retangulos.x, retangulos.y, retangulos.largura, retangulos.altura);
+		return retangulos;
+	},
+
 	atualizar: function(){
 		// se apertou a tecla, tartarruga pula
 		if(evento.pular){
@@ -58,5 +67,7 @@ Tartarruga.prototype = {
 
 	desenhar: function(){
 		this.sprite.desenhar(this.x, this.y);
+		colisor.testarColisao();
+		//this.areaDeColisao();
 	}
 }
