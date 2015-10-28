@@ -1,5 +1,5 @@
 function Colisores(){
-	this.sprites = [];
+	this.sprites = []; // todos os elementos colisiveis
 }
 
 Colisores.prototype = {
@@ -35,8 +35,8 @@ Colisores.prototype = {
 					(areaB.y > areaA.y && areaB.y < areaA.y + areaA.altura)
 				)
 				{
-					elementoNaTela.excluirElemento(spriteA);
-					elementoNaTela.excluirElemento(spriteB);
+					spriteA.explodir(); // explode os elementos
+					spriteB.explodir(); // explode os elementos
 				}
 			}
 		}

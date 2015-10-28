@@ -1,3 +1,4 @@
+// config das imagens de fundo
 function Fundo(imagem){
 	this.imagem = imagem;
 	this.x = 0;
@@ -7,11 +8,12 @@ function Fundo(imagem){
 }
 
 Fundo.prototype = {
+	// Controla as imagens de fundo
 	atualizar:function(){
 		if(this.x < this.breakpoint) this.x = 0;
 		this.x -= this.velocidadeX;
 	},
-
+	// Desenha o fundo
 	desenhar:function(){
 		image(this.imagem, this.x, this.y);
 		noStroke();

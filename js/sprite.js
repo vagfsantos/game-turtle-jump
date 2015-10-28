@@ -15,7 +15,8 @@ function Sprite(imagem, linhas, colunas){
 	// imagem atual da sprite
 	this.coluna = 0;
 	this.linha = 1;
-
+	this.cicloUnico = false;
+	this.explodiu = false;
 }
 
 Sprite.prototype = {
@@ -33,7 +34,11 @@ Sprite.prototype = {
 		if(this.coluna < this.numColunas - 1){
 			this.coluna++;
 		} else{
-			this.coluna = 0;
+			if(!this.cicloUnico){
+				this.coluna = 0;
+			} else{
+				this.explodiu = true;
+			}
 		}
 
 		this.ultimoTempo = tempoAtual;

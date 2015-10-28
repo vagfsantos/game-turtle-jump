@@ -1,6 +1,6 @@
 function Tartarruga(sprite){
 	this.sprite = sprite;
-	this.x = 20;
+	this.x = 40;
 	this.y = 0;
 	this.posicaoChao = 0;
 
@@ -8,7 +8,7 @@ function Tartarruga(sprite){
 	this.velocidadeY = -20;
 
 	this.ultimoTempoAbaixado = null;
-	this.tempoAbaixado = 500;
+	this.tempoAbaixado = 700;
 }
 
 Tartarruga.prototype = {
@@ -42,13 +42,22 @@ Tartarruga.prototype = {
 
 	areaDeColisao:function(){
 		var retangulos = {
-			'x': this.x + 20,
+			'x': this.x + 15,
 			'y': this.y,
-			'largura': 20,
-			'altura': 40
+			'largura': 30,
+			'altura': 45
 		}
-		rect(retangulos.x, retangulos.y, retangulos.largura, retangulos.altura);
+
+		if(sprite_tartarruga.linha === 3){
+			retangulos.y = this.y + 25;
+			retangulos.altura = 20;
+		}
+		//rect(retangulos.x, retangulos.y, retangulos.largura, retangulos.altura);
 		return retangulos;
+	},
+
+	explodir:function(){
+		this.sprite = sprite_explosao;
 	},
 
 	atualizar: function(){
@@ -61,13 +70,17 @@ Tartarruga.prototype = {
 			this.abaixa();
 		}
 
+		if(this.sprite.explodiu) {
+			elementoNaTela.excluirElemento(this);
+			elementoNaTela.gameOver = true;
+		}
+
 		sprite_tartarruga.proximoFrame();
+		colisor.testarColisao();
 
 	},
 
 	desenhar: function(){
 		this.sprite.desenhar(this.x, this.y);
-		colisor.testarColisao();
-		//this.areaDeColisao();
 	}
 }

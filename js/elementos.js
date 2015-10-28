@@ -8,6 +8,7 @@
 
 function ElementoNaTela(){
 	this.elementos = [];
+	this.gameOver = false;
 }
 
 ElementoNaTela.prototype = {
@@ -16,6 +17,7 @@ ElementoNaTela.prototype = {
 		this.elementos.push(elem);
 	},
 
+	// excluindo elementos que saem da tela para nao prejudicar a performace
 	excluirElemento:function(elem){
 		var pos = this.elementos.indexOf(elem);
 		this.elementos.splice(pos, 1);
@@ -33,8 +35,15 @@ ElementoNaTela.prototype = {
 	
 	// Desenhando na tela
 	desenhar:function(){
-		for(var i in this.elementos){
-			this.elementos[i].desenhar();
+		if(!this.gameOver){
+			for(var i in this.elementos){
+				this.elementos[i].desenhar();
+			}
+		} else{
+			noLoop();
+			fill(200);
+			rect(0, 0, width, height);
+			image(img_fimDeJogo, width/6, height/6);
 		}
 	}	
 }
