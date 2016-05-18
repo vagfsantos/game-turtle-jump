@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" version="1.0.0" id="vagfsantos.turtlerace">
+	<name>Turtle Race</name>
+	<description>
+		Game
+	</description>
+	<author href="http://vagfsantos.esy.es" email="santos.vagnerferreira@gmail.com">
+		Vagner Ferreira Santos
+	</author>
+
+	<preference name="orientation" value="landscape" />
+	<preference name="fullscreen" value="true" />
+
+	<gap:plataform name="android"/>
+</widget>
